@@ -44,7 +44,7 @@ int main(int argc, char **argv)
 		{
 			free_tokens(args);
 			free(line);
-			exit(status); /* ✅ Handle the built-in exit command */
+			exit(status);
 		}
 
 		full_cmd = find_path(args[0]);
@@ -67,6 +67,10 @@ int main(int argc, char **argv)
 		else
 		{
 			wait(&status);
+			if (WIFEXITED(status))
+				status = WEXITSTATUS(status);
+			else
+				status = 2; /* ✅ Default to 2 if the child didn’t exit normally */
 		}
 
 		free(full_cmd);
