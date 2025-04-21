@@ -40,12 +40,19 @@ int main(int argc, char **argv)
 			continue;
 		}
 
+		if (strcmp(args[0], "exit") == 0)
+		{
+			free_tokens(args);
+			free(line);
+			exit(status); /* ✅ Handle the built-in exit command */
+		}
+
 		full_cmd = find_path(args[0]);
 		if (full_cmd == NULL)
 		{
 			fprintf(stderr, "%s: 1: %s: not found\n", argv[0], args[0]);
 			free_tokens(args);
-			status = 127; /* ✅ Return proper status when command is not found */
+			status = 127;
 			continue;
 		}
 
@@ -67,6 +74,6 @@ int main(int argc, char **argv)
 	}
 
 	free(line);
-	return (status);  /* ✅ Return last command status (important for non-interactive mode) */
+	return (status);
 }
 
