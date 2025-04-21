@@ -12,5 +12,6 @@ extern char **environ;
 
 char **parse_line(char *line);
 void free_tokens(char **tokens);
+char *find_path(char *command);
 
 #endif
