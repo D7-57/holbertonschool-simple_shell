@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <sys/stat.h>
 
 /**
  * find_path - Finds the full path of a command using PATH
