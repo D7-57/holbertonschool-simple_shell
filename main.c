@@ -48,7 +48,8 @@ int main(int argc, char **argv)
 			continue;
 		}
 
-		free(args[0]);
+		if (args[0] != full_cmd)
+			free(args[0]);
 		args[0] = full_cmd;
 
 		if (fork() == 0)

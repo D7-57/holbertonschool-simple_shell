@@ -9,8 +9,8 @@
  */
 char *find_path(char *command)
 {
-	char *path_env, *path_copy, *dir, *full_path;
-	int len;
+	char *path_env = NULL, *path_copy, *dir, *full_path;
+	int len, i = 0;
 	struct stat st;
 
 	if (command == NULL)
@@ -24,7 +24,16 @@ char *find_path(char *command)
 			return (NULL);
 	}
 
-	path_env = getenv("PATH");
+	while (environ[i])
+	{
+		if (strncmp(environ[i], "PATH=", 5) == 0)
+		{
+			path_env = environ[i] + 5;
+			break;
+		}
+		i++;
+	}
+
 	if (!path_env)
 		return (NULL);
 
