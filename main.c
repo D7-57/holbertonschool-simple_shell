@@ -5,7 +5,7 @@
  * @argc: Argument count
  * @argv: Argument vector
  *
- * Return: Always 0
+ * Return: Exit status of the last command
  */
 int main(int argc, char **argv)
 {
@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 	size_t len = 0;
 	ssize_t read;
 	char **args;
-	int status;
+	int status = 0;
 
 	(void)argc;
 
@@ -45,6 +45,7 @@ int main(int argc, char **argv)
 		{
 			fprintf(stderr, "%s: 1: %s: not found\n", argv[0], args[0]);
 			free_tokens(args);
+			status = 127; /* ✅ Return proper status when command is not found */
 			continue;
 		}
 
@@ -61,11 +62,11 @@ int main(int argc, char **argv)
 			wait(&status);
 		}
 
-		free(full_cmd);  /* ✅ Only free the malloc'd result of find_path */
+		free(full_cmd);
 		free_tokens(args);
 	}
 
 	free(line);
-	return (0);
+	return (status);  /* ✅ Return last command status (important for non-interactive mode) */
 }
 
