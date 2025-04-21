@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 	size_t len = 0;
 	ssize_t read;
 	char **args;
-	int status = 0;
+	int status = 0, i;
 
 	(void)argc;
 
@@ -47,6 +47,17 @@ int main(int argc, char **argv)
 			exit(status);
 		}
 
+		if (strcmp(args[0], "env") == 0)
+		{
+			for (i = 0; environ[i]; i++)
+			{
+				write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
+				write(STDOUT_FILENO, "\n", 1);
+			}
+			free_tokens(args);
+			continue;
+		}
+
 		full_cmd = find_path(args[0]);
 		if (full_cmd == NULL)
 		{
@@ -70,7 +81,7 @@ int main(int argc, char **argv)
 			if (WIFEXITED(status))
 				status = WEXITSTATUS(status);
 			else
-				status = 2; /* ✅ Default to 2 if the child didn’t exit normally */
+				status = 2;
 		}
 
 		free(full_cmd);
