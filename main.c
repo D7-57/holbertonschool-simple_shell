@@ -48,13 +48,9 @@ int main(int argc, char **argv)
 			continue;
 		}
 
-		if (args[0] != full_cmd)
-			free(args[0]);
-		args[0] = full_cmd;
-
 		if (fork() == 0)
 		{
-			if (execve(args[0], args, environ) == -1)
+			if (execve(full_cmd, args, environ) == -1)
 			{
 				perror(argv[0]);
 				exit(EXIT_FAILURE);
@@ -65,9 +61,11 @@ int main(int argc, char **argv)
 			wait(&status);
 		}
 
+		free(full_cmd);  /* ✅ Only free the malloc'd result of find_path */
 		free_tokens(args);
 	}
 
 	free(line);
 	return (0);
 }
+
