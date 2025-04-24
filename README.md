@@ -18,50 +18,69 @@ This shell operates in both **interactive** and **non-interactive** modes, makin
 By completing this project, we learned to:
 
 - Create, manage, and execute child processes with `fork` and `execve`
+
 - Work with environment variables and the `PATH`
+
 - Parse and tokenize input from standard input using `getline` and `strtok`
+
 - Handle command errors, status codes, and memory management
+
 - Implement basic shell built-ins
-
----
-
-## 🔧 Prototype
-
-int main(int argc, char **argv);
 
 ---
 
 ## ✅ Features
 -Custom shell prompt: #cisfun$
+
 -Execution of commands with or without absolute/relative paths
+
 -Search and execution using the PATH environment variable
+
 -Proper error handling and exit status codes
+
 -Built-in support for:
+
    exit: exits the shell
+
    env: prints the current environment
+
 -Interactive and non-interactive mode support
+
 -Betty-compliant and Valgrind-clean
 
 ---
 
 ## 💡 Built-in Commands
+
 -Built-in	Description
+
 -exit	      Exits the shell
+
 -env	  Prints the current environment
 
 ---
 
 ## 🧪 Usage Examples
 
+
 Interactive mode:
+
 $ ./hsh
+
 #cisfun$ ls -l
+
 #cisfun$ /bin/echo Hello
+
 #cisfun$ env
+
 #cisfun$ exit
 
+
+
 Non-interactive mode:
+
 $ echo "ls -l" | ./hsh
+
 $ cat script.sh | ./hsh
 
 ---
