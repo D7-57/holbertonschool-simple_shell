@@ -110,3 +110,9 @@ readdir, signal, stat, strtok, wait, waitpid, write
 ## 👨‍💻 Authors
 - Abdulrahman Alfawzan , Meshari Alabdullah
 
+---
+
+## 📖 Manual
+View the man page with:
+
+man ./man_1_simple_shell
