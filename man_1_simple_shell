@@ -1,0 +1,48 @@
+.TH simple_shell 1 "April 2025" "Holberton School/Tuwaiq Academy" "User Commands"
+
+.SH NAME
+simple_shell \- a basic UNIX command line interpreter
+
+.SH SYNOPSIS
+.B ./hsh
+[no arguments]
+
+.SH DESCRIPTION
+.B simple_shell
+is a minimal implementation of a UNIX shell created for educational purposes.
+It executes commands read from standard input and supports both interactive and non-interactive modes.
+
+The shell mimics a subset of the behavior of
+.BR /bin/sh ,
+resolving commands using the
+.B PATH
+environment variable and handling a few built-in commands.
+
+.SH BUILTINS
+.TP
+.B exit
+Exit the shell.
+
+.TP
+.B env
+Display the current environment variables.
+
+.SH USAGE
+In interactive mode:
+.PP
+.EX
+$ ./hsh
+#cisfun$ ls -l
+#cisfun$ env
+#cisfun$ exit
+.EE
+
+In non-interactive mode:
+.PP
+.EX
+$ echo "ls -l" | ./hsh
+.EE
+
+.SH AUTHOR
+Abdulrahman Alfawzan, Meshari Alabdullah
+
