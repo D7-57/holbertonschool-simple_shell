@@ -27,7 +27,6 @@ By completing this project, we learned to:
 
 ## 🔧 Prototype
 
-```c
 int main(int argc, char **argv);
 
 ---
